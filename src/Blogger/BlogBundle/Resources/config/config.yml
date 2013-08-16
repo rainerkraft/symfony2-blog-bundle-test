@@ -1,0 +1,5 @@
+# src/Blogger/BlogBundle/Resources/config/config.yml
+parameters:
+    # Blogger contact email addresses
+    blogger_blog.emails.contact_email_sender: enquiries@symblog.co.uk
+    blogger_blog.emails.contact_email_recipient: rkraft@gumtree.com
