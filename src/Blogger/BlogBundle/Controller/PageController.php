@@ -13,7 +13,7 @@ class PageController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()
-                   ->getEntityManager();
+                   ->getManager();
 
         $blogs = $em->getRepository('BloggerBlogBundle:Blog')
                     ->getLatestBlogs();

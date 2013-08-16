@@ -286,4 +286,14 @@ class Blog
     {
         return $this->comments;
     }
+
+    /**
+     * Get title on toString
+     * 
+     * @return string 
+     */
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
 }
