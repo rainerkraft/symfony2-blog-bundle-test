@@ -12,57 +12,61 @@ use Blogger\BlogBundle\Form\CommentType;
  */
 class CommentController extends Controller
 {
-	public function newAction($blog_id)
-	{
-		$blog = $this->getBlog($blog_id);
+    public function newAction($blog_id)
+    {
+        $blog = $this->getBlog($blog_id);
 
-		$comment = new Comment();
-		$comment->setBlog($blog);
-		$form = $this->createForm(new CommentType(), $comment);
+        $comment = new Comment();
+        $comment->setBlog($blog);
+        $form = $this->createForm(new CommentType(), $comment);
 
-		return $this->render('BloggerBlogBundle:Comment:form.html.twig', array(
-			'comment' => $comment,
-			'form' => $form->createView()
-		));
-	}
+        return $this->render('BloggerBlogBundle:Comment:form.html.twig', array(
+            'comment' => $comment,
+            'form' => $form->createView()
+        ));
+    }
 
-	public function createAction($blog_id)
-	{
-		$blog = $this->getBlog($blog_id);
+    public function createAction($blog_id)
+    {
+        $blog = $this->getBlog($blog_id);
 
-		$comment = new Comment();
-		$comment->setBlog($blog);
-		$request = $this->getRequest();
-		$form = $this->createForm(new CommentType(), $comment);
+        $comment = new Comment();
+        $comment->setBlog($blog);
+        $request = $this->getRequest();
+        $form = $this->createForm(new CommentType(), $comment);
 
-		$form->handleRequest($request);
+        $form->handleRequest($request);
 
-		if ($form->isValid()) {
-			// TODO: persist the comment entity
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()
+                       ->getManager();
 
-			return $this->redirect($this->generateUrl('BloggerBlogBundle_blog_show', array(
-				'id' => $comment->getBlog()->getId(),
-				'#comment-' => $comment->getId()
-			)));
-		}
+            $em->persist($comment);
+            $em->flush();
 
-		return $this->render('BloggerBlogBundle:Comment:create.html.twig', array(
-			'comment' => $comment,
-			'form' => $form->createView()
-		));
-	}
+            return $this->redirect($this->generateUrl('BloggerBlogBundle_blog_show', array(
+                'id' => $comment->getBlog()->getId(),
+                '#comment-' => $comment->getId()
+            )));
+        }
 
-	protected function getBlog($blog_id)
-	{
-		$em = $this->getDoctrine()
-		           ->getManager();
+        return $this->render('BloggerBlogBundle:Comment:create.html.twig', array(
+            'comment' => $comment,
+            'form' => $form->createView()
+        ));
+    }
 
-		$blog = $em->getRepository('BloggerBlogBundle:Blog')->find($blog_id);
+    protected function getBlog($blog_id)
+    {
+        $em = $this->getDoctrine()
+                   ->getManager();
 
-		if (!$blog) {
-			throw $this->createNotFoundException('Unable to find blog post.');
-		}
+        $blog = $em->getRepository('BloggerBlogBundle:Blog')->find($blog_id);
 
-		return $blog;
-	}
+        if (!$blog) {
+            throw $this->createNotFoundException('Unable to find blog post.');
+        }
+
+        return $blog;
+    }
 }
