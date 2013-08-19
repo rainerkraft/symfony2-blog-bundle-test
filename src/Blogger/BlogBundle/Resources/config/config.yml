@@ -3,3 +3,4 @@ parameters:
     # Blogger contact email addresses
     blogger_blog.emails.contact_email_sender: enquiries@symblog.co.uk
     blogger_blog.emails.contact_email_recipient: rkraft@gumtree.com
+    blogger_blog.comments.latest_comment_limit: 10
