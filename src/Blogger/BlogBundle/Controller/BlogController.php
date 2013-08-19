@@ -15,7 +15,7 @@ class BlogController extends Controller
 	 * @param  int $id ID of the blog entry
 	 * @return view
 	 */
-	public function showAction($id)
+	public function showAction($id, $slug)
 	{
 		$em = $this->getDoctrine()->getManager();
 
