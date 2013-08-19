@@ -17,11 +17,14 @@ class BloggerBlogExtension extends \Twig_Extension
         $delta = time() - $dateTime->getTimestamp();
 
         if ($delta < 0) {
-            throw new \InvalidArgumentException("createdAgo is unable to handle dates in the future");
+            $delta = 0;
         }
 
         $duration = "";
-        if ($delta < 60) {
+        if ($delta < 10) {
+            // Winks
+            $duration = "just now";
+        } elseif ($delta < 60) {
             // Seconds
             $time = $delta;
             $duration = $time . " second" . (($time > 1) ? "s" : "") . " ago";
