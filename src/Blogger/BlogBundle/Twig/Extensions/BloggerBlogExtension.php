@@ -28,19 +28,19 @@ class BloggerBlogExtension extends \Twig_Extension
             // Seconds
             $time = $delta;
             $duration = $time . " second" . (($time > 1) ? "s" : "") . " ago";
-        } elseif ($delta <= 3600) {
+        } elseif ($delta < 3600) {
             // Minutes
             $time = floor($delta / 60);
             $duration = $time . " minute" . (($time > 1) ? "s" : "") . " ago";
-        } elseif ($delta <= 86400) {
+        } elseif ($delta < 86400) {
             // Hours
             $time = floor($delta / 3600);
             $duration = $time . " hour" . (($time > 1) ? "s" : "") . " ago";
-        } elseif ($delta <= 2592000) {
+        } elseif ($delta < 2592000) {
             // Days
             $time = floor($delta / 86400);
             $duration = $time . " day" . (($time > 1) ? "s" : "") . " ago";
-        } elseif ($delta <= 31536000) {
+        } elseif ($delta < 31536000) {
             // Months
             $time = floor($delta / 2592000);
             $duration = $time . " month" . (($time > 1) ? "s" : "") . " ago";
