@@ -71,7 +71,7 @@ class Comment
 	}
 
 	/**
-	 * @ORM\preUpdate
+	 * @ORM\PreUpdate
 	 */
 	public function setUpdatedValue()
 	{
