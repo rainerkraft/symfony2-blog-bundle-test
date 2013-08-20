@@ -24,6 +24,10 @@ class BloggerBlogExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("2 months ago", $blog->createdAgo($this->getDateTime((2592000*2)*-1)));
         $this->assertEquals("1 year ago", $blog->createdAgo($this->getDateTime(-31536000)));
         $this->assertEquals("2 years ago", $blog->createdAgo($this->getDateTime((31536000*2)*-1)));
+
+        // Cannot create time in the future
+        $this->setExpectedException('\InvalidArgumentException');
+        $blog->createdAgo($this->getDateTime(60));
 	}
 
 	protected function getDateTime($delta)

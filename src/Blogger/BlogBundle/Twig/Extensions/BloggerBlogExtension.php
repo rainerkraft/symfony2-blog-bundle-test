@@ -17,7 +17,7 @@ class BloggerBlogExtension extends \Twig_Extension
         $delta = time() - $dateTime->getTimestamp();
 
         if ($delta < 0) {
-            $delta = 0;
+            throw new \InvalidArgumentException("createdAgo is unable to handle dates in the future");
         }
 
         $duration = "";
