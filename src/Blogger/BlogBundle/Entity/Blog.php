@@ -1,5 +1,5 @@
 <?php
-// src/Blogger/BlogBundle/Entity/Blog.pghp
+// src/Blogger/BlogBundle/Entity/Blog.php
 
 namespace Blogger\BlogBundle\Entity;
 
@@ -184,7 +184,8 @@ class Blog
     /**
      * Get blog
      *
-     * @return string 
+     * @param null $length
+     * @return string
      */
     public function getBlog($length = null)
     {

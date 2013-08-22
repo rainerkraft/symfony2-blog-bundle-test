@@ -8,6 +8,11 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Blogger\BlogBundle\Entity\Blog;
 
+/**
+ * Load data fixtures for blog posts in local dev
+ * Class BlogFixtures
+ * @package Blogger\BlogBundle\DataFixtures\ORM
+ */
 class BlogFixtures extends AbstractFixture implements OrderedFixtureInterface
 {
 	public function load(ObjectManager $manager)

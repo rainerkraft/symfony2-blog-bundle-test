@@ -12,6 +12,10 @@ use Blogger\BlogBundle\Form\CommentType;
  */
 class CommentController extends Controller
 {
+    /**
+     * @param $blog_id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function newAction($blog_id)
     {
         $blog = $this->getBlog($blog_id);
@@ -26,6 +30,10 @@ class CommentController extends Controller
         ));
     }
 
+    /**
+     * @param $blog_id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function createAction($blog_id)
     {
         $blog = $this->getBlog($blog_id);
@@ -57,6 +65,11 @@ class CommentController extends Controller
         ));
     }
 
+    /**
+     * @param $blog_id
+     * @return \Blogger\BlogBundle\Entity\Blog
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     */
     protected function getBlog($blog_id)
     {
         $em = $this->getDoctrine()

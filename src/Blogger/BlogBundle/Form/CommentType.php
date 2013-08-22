@@ -7,6 +7,12 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * Type to hold the comment form
+ *
+ * Class CommentType
+ * @package Blogger\BlogBundle\Form
+ */
 class CommentType extends AbstractType
 {
     /**

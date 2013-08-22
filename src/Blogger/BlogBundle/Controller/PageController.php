@@ -8,8 +8,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Blogger\BlogBundle\Entity\Enquiry;
 use Blogger\BlogBundle\Form\EnquiryType;
 
+/**
+ * Class PageController main page controller
+ * @package Blogger\BlogBundle\Controller
+ */
 class PageController extends Controller
 {
+    /**
+     * Homepage controller
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function indexAction()
     {
         $em = $this->getDoctrine()
@@ -23,11 +31,20 @@ class PageController extends Controller
         ));
     }
 
+    /**
+     * About page controller
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function aboutAction()
     {
     	return $this->render('BloggerBlogBundle:Page:about.html.twig');
     }
 
+    /**
+     * Contact page controller (also handles form submissions)
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function contactAction(Request $request)
     {
         $enquiry= new Enquiry();
@@ -61,6 +78,10 @@ class PageController extends Controller
         ));
     }
 
+    /**
+     * Controller for showing sidebar content
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function sidebarAction()
     {
         $em = $this->getDoctrine()

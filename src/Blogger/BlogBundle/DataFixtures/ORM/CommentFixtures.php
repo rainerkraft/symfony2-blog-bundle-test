@@ -9,6 +9,11 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Blogger\BlogBundle\Entity\Comment;
 use Blogger\BlogBundle\Entity\Blog;
 
+/**
+ * Load data fixtures for comments on blog posts in local dev
+ * Class CommentFixtures
+ * @package Blogger\BlogBundle\DataFixtures\ORM
+ */
 class CommentFixtures extends AbstractFixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)

@@ -10,11 +10,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  */
 class BlogController extends Controller
 {
-	/**
-	 * [showAction description]
-	 * @param  int $id ID of the blog entry
-	 * @return view
-	 */
+    /**
+     * Controller for showing a single blog post
+     * @param  int $id ID of the blog entry
+     * @param $slug
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @return \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     */
 	public function showAction($id, $slug)
 	{
 		$em = $this->getDoctrine()->getManager();
