@@ -47,7 +47,7 @@ class BlogRepository extends EntityRepository
         foreach ($blogTags as $blogTag) {
             $tags = array_merge(explode(",", $blogTag['tags']), $tags);
         }
-        foreach ($tags as $tag) {
+        foreach ($tags as &$tag) {
             $tag = trim($tag);
         }
 
