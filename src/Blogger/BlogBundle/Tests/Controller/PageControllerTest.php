@@ -66,6 +66,22 @@ class PageControllerTest extends WebTestCase
 
         $client->submit($form);
 
+        // Check email has been sent
+        if ($profile = $client->getProfile()) {
+            $swiftMailerProfiler = $profile->getCollector('swiftmailer');
+
+            // Only 1 message should have been sent
+            $this->assertEquals(1, $swiftMailerProfiler->getMessageCount());
+
+            // Get the first message
+            $messages = $swiftMailerProfiler->getMessages();
+            $message = array_shift($messages);
+
+            $symblogEmail = $client->getContainer()->getParameter('blogger_blog.emails.contact_email');
+            // Check message is being sent to correct address
+            $this->assertArrayHasKey($symblogEmail, $message->getTo());
+        }
+
         // Need to follow redirect
         $crawler = $client->followRedirect();
 
