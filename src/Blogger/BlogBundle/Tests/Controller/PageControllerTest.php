@@ -58,16 +58,18 @@ class PageControllerTest extends WebTestCase
         // Select based on button value, or id or name for buttons
         $form = $crawler->selectButton('Submit')->form();
 
-        $form['contact[name]'] = 'name';
-        $form['contact[email]'] = 'email@email.com';
-        $form['contact[subject]'] = 'Subject';
-        $form['contact[body]'] = 'The comment body must be at least 50 characters long as there is a validation constraint on the Enquiry entity';
+        $form['blogger_blogbundle_enquirytype[name]'] = 'name';
+        $form['blogger_blogbundle_enquirytype[email]'] = 'email@email.com';
+        $form['blogger_blogbundle_enquirytype[subject]'] = 'Subject';
+        $form['blogger_blogbundle_enquirytype[body]'] = 'The comment body must be at least 50 characters long as '
+            . 'there is a validation constraint on the Enquiry entity';
 
-        $crawler = $client->submit($form);
+        $client->submit($form);
 
         // Need to follow redirect
         $crawler = $client->followRedirect();
 
-        $this->assertEquals(1, $crawler->filter('.blogger-notice:contains("Your contact enquiry was successfully sent. Thank you!")')->count());
+        $this->assertEquals(1, $crawler->filter('.blogger-notice:contains("Your contact enquiry was successfully '
+            . 'sent. Thank you' . '!")')->count());
     }
 }

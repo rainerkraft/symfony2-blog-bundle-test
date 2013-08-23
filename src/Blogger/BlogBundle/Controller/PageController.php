@@ -60,7 +60,9 @@ class PageController extends Controller
                     ->setSubject('Contact enquiry from symblog')
                     ->setFrom($this->container->getParameter('blogger_blog.emails.contact_email_sender'))
                     ->setTo($this->container->getParameter('blogger_blog.emails.contact_email_recipient'))
-                    ->setBody($this->renderView('BloggerBlogBundle:Email:contactEmail.txt.twig', array('enquiry' => $enquiry)));
+                    ->setBody($this->renderView('BloggerBlogBundle:Email:contactEmail.txt.twig', array(
+                        'enquiry' => $enquiry
+                    )));
 
                 $this->get('mailer')->send($message);
 
